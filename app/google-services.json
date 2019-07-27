@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1033958229064",
+    "firebase_url": "https://muhabet-21a8a.firebaseio.com",
+    "project_id": "muhabet-21a8a",
+    "storage_bucket": "muhabet-21a8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033958229064:android:69502b855bf564ed",
+        "android_client_info": {
+          "package_name": "psychegrammer.example.muhabet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033958229064-fvqeu0uuu7psf75tttrmirq33b28std0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "psychegrammer.example.muhabet",
+            "certificate_hash": "be02a7ae9a49a788cbb56b713f3be22856ab982a"
+          }
+        },
+        {
+          "client_id": "1033958229064-tfojeg5adafkbo6hqq51trh5lcfd6qf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDuOYXnazCXiaF0lifI0zR5Y-LqaVpV2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033958229064-tfojeg5adafkbo6hqq51trh5lcfd6qf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,8 @@
 package psychegrammer.example.muhabet
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -23,10 +23,10 @@ class LoginActivity : AppCompatActivity() {
                     if (!it.isSuccessful) return@addOnCompleteListener
 
                     // else if successful
-                    Log.d("MainActivity", "User with uid: ${it.result?.user?.uid} has successfully logged in.")
+                    Log.d("RegisterActivity", "User with uid: ${it.result?.user?.uid} has successfully logged in.")
                 }
                 .addOnFailureListener() {
-                    Log.d("MainActivity", "User has failed to login: ${it.message}")
+                    Log.d("RegisterActivity", "User has failed to login: ${it.message}")
                 }
         }
 

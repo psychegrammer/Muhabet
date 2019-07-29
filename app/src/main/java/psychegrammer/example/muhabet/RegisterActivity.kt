@@ -61,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
             selectphoto_imageview_register.setImageBitmap(bitmap)
 
             selectphoto_button_register.alpha = 0f
-            
+
         }
 
     }
@@ -125,6 +125,12 @@ class RegisterActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d(TAG, "Finally we saved the user to Firebase Database")
+
+                val intent = Intent(this, LatestMessagesActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                // purpose of flags in this particular case is that
+                // when we push BACK button we are not on RegisterActivity but out of app
+                startActivity(intent)
             }
             .addOnFailureListener {
                 Log.d(TAG, "Failed to set value to database: ${it.message}")
@@ -132,4 +138,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String)
+class User(val uid: String, val username: String, val profileImageUrl: String) {
+    constructor() : this("", "", "")
+}

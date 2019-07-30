@@ -15,13 +15,14 @@
             android:id="@+id/appCompatImageView" app:srcCompat="@android:drawable/btn_star_big_on"
             android:layout_marginTop="8dp"/>
     <androidx.appcompat.widget.AppCompatTextView
+
             android:text="Ovo je moja poruka, ziveo sam tu, ovo je moja draga, voleo sam nju..Ovo je drugi zivot"
             android:padding="16dp"
             android:maxWidth="240dp"
 
             android:background="@drawable/rounded_edittext_register_login"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView2"
+            android:layout_height="wrap_content" android:id="@+id/textview_from_row"
             tools:layout_conversion_absoluteHeight="19dp"
             tools:layout_conversion_absoluteWidth="411dp"
             app:layout_constraintStart_toEndOf="@+id/appCompatImageView"

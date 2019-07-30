@@ -1,4 +1,4 @@
-package psychegrammer.example.muhabet
+package psychegrammer.example.muhabet.messages
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
+import psychegrammer.example.muhabet.R
+import psychegrammer.example.muhabet.registerlogin.RegisterActivity
 
 class LatestMessagesActivity : AppCompatActivity() {
 

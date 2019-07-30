@@ -1,4 +1,4 @@
-package psychegrammer.example.muhabet
+package psychegrammer.example.muhabet.registerlogin
 
 import android.app.Activity
 import android.content.Intent
@@ -12,6 +12,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_register.*
+import psychegrammer.example.muhabet.R
+import psychegrammer.example.muhabet.messages.LatestMessagesActivity
+import psychegrammer.example.muhabet.models.User
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -120,7 +123,11 @@ class RegisterActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-        val user = User(uid, username_edittext_register.text.toString(), profileImageUrl)
+        val user = User(
+            uid,
+            username_edittext_register.text.toString(),
+            profileImageUrl
+        )
 
         ref.setValue(user)
             .addOnSuccessListener {
@@ -138,6 +145,4 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String) {
-    constructor() : this("", "", "")
-}
+

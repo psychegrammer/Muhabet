@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Muhabet</string>
+    <string name="unesi_poruku">Unesi Poruku</string>
+    <string name="po_alji">Pošalji</string>
 </resources>

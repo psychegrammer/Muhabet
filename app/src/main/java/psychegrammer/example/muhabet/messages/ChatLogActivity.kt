@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.chat_to_row.view.*
 import psychegrammer.example.muhabet.R
 import psychegrammer.example.muhabet.models.ChatMessage
 import psychegrammer.example.muhabet.models.User
+import psychegrammer.example.muhabet.models.views.ChatFromItem
+import psychegrammer.example.muhabet.models.views.ChatToItem
 
 class ChatLogActivity : AppCompatActivity() {
 
@@ -67,7 +69,7 @@ class ChatLogActivity : AppCompatActivity() {
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                 val chatMessage = p0.getValue(ChatMessage::class.java)
-                // get the message
+                // get the message`
 
                 if (chatMessage != null) {
                     Log.d(TAG, chatMessage.text)
@@ -82,6 +84,8 @@ class ChatLogActivity : AppCompatActivity() {
 
                     }
                 }
+
+                recyclerview_chat_log.scrollToPosition(adapter.itemCount - 1)
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {
@@ -97,6 +101,7 @@ class ChatLogActivity : AppCompatActivity() {
 
         // how do we actually send a message to firebase...
         val text = edittext_chat_log.text.toString()
+
         val fromId = FirebaseAuth.getInstance().uid // signed-in user
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
         val toId = user.uid
@@ -110,6 +115,7 @@ class ChatLogActivity : AppCompatActivity() {
         val toReference = FirebaseDatabase.getInstance().getReference("/user-messages/$toId/$fromId").push()
 
         val chatMessage = ChatMessage(reference.key!!, text, fromId, toId, System.currentTimeMillis() / 1000)
+
         reference.setValue(chatMessage)
             .addOnSuccessListener {
                 Log.d(TAG, "Saved our chat message: ${reference.key}")
@@ -118,37 +124,15 @@ class ChatLogActivity : AppCompatActivity() {
             }
 
         toReference.setValue(chatMessage)
+
+        val latestMessageRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId/$toId")
+        latestMessageRef.setValue(chatMessage)
+
+        val latestMessageToRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$toId/$fromId")
+        latestMessageToRef.setValue(chatMessage)
     }
 
 
 }
 
-class ChatFromItem(val text: String, val user: User): Item<ViewHolder>() {
-    override fun getLayout(): Int {
-        return R.layout.chat_from_row
-    }
 
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.textview_from_row.text = text
-        val uri = user.profileImageUrl
-        val targetImageView = viewHolder.itemView.imageview_chat_from_row
-        Picasso.get().load(uri).into(targetImageView)
-    }
-
-}
-
-class ChatToItem(val text: String, val user: User): Item<ViewHolder>() {
-    override fun getLayout(): Int {
-        return R.layout.chat_to_row
-    }
-
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.textview_to_row.text = text
-
-        // load our user image into the star
-        val uri = user.profileImageUrl
-        val targetImageView = viewHolder.itemView.imageview_chat_to_row
-        Picasso.get().load(uri).into(targetImageView)
-    }
-
-}
